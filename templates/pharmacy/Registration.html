@@ -1,0 +1,174 @@
+
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Course Registration Form Flat Responsive Widget Template :: w3layouts</title>
+<!-- Meta tag Keywords -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Course Registration Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Meta tag Keywords -->
+<link href="/static/regtemp/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<!-- //js -->
+<!-- web-fonts -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<!-- //web-fonts -->
+</head>
+<body>
+	<!-- banner -->
+<div class="video">
+	<div class="center-container">
+	    <div class="w3ls-agileinfo">
+			<h1> Pharmacy Registration Form </h1>
+		</div>
+		 <div class="bg-agile">
+			<h2>Sign Up </h2>
+			<div class="login-form">
+				<form id="form1" name="form1" method="post" action="/Registrationpost">
+    {% csrf_token %}
+					 <input type="text" name="textfield" id="textfield" class="form-control" required placeholder="Name" />
+					<input type="email" name="textfield3" id="textfield3"class="form-control" required placeholder="Email" />
+					<input type="text" name="textfield4" id="textfield4"class="form-control" required  maxlength="10" pattern="[6-9][0-9]{9}" placeholder="Phone"/></td>
+					 <input type="hidden" name="textfield5" id="textfield5"class="form-control" required  placeholder="Latitude"/>
+					<input type="hidden" name="textfield6" id="textfield6"class="form-control" required  placeholder="Longtitude"/>
+                    <div id="gmap"></div>
+                    <input type="text" name="textfield7" id="textfield7"class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required  placeholder="Password"/>
+					<input type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+	<!-- //banner -->
+	 <!--copyright-->
+		<div class="copy w3ls">
+		    <p>&copy; 2023 Epharma . All Rights Reserved  | Design by <a href="DASC" target="_blank">DASC</a> </p>
+	    </div>
+	<!--//copyright-->
+	</div>
+</div>
+</body>
+</html>
+<style type="text/css">
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#map_canvas { height: 100% }
+</style>
+
+<script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false">
+</script>
+<script type="text/javascript">
+
+    var map;
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(11.618061975930,75.36565089010);
+            var myOptions = {
+                zoom:7,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+            // marker refers to a global variable
+            marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                // get lat/lon of click
+                var clickLat = event.latLng.lat();
+                var clickLon = event.latLng.lng();
+
+                // show in input box
+                document.getElementById("textfield5").value = clickLat.toFixed(5);
+                document.getElementById("textfield6").value = clickLon.toFixed(5);
+
+{#                  var marker = new google.maps.Marker({#}
+{#                        position: new google.maps.LatLng(clickLat,clickLon),#}
+{#                        map: map#}
+{#                     });#}
+            });
+    }
+
+    window.onload = function () { GetMylocation() };
+
+
+</script>
+     <style>
+ div#gmap {
+
+        width: 100%;
+        height: 500px;
+        border:double;
+ }
+    </style>
+
+{#    <form id="form1" runat="server">#}
+<center>
+<!-- MAP HOLDER -->
+
+<!-- REFERENCES -->
+{#Lat: <input type="text" id='lat'>#}
+{#Lon: <input type="text" id='lon'>#}
+
+</center>
+
+
+
+
+<script>
+
+function GetMylocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    //x.innerHTML = "Geolocation is not supported by this browser.";
+      alert("Geolocation is not supported by this browser.")
+  }
+}
+var x1 = document.getElementById("textfield5")
+var x2 = document.getElementById("textfield6");
+var map;
+function showPosition(position) {
+  x1.value=position.coords.latitude;
+  x2.value=position.coords.longitude;
+
+  var myLatlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+            var myOptions = {
+                zoom:14,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+            // marker refers to a global variable
+            marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map
+            });
+
+            google.maps.event.addListener(map, "click", function(event) {
+                // get lat/lon of click
+                var clickLat = event.latLng.lat();
+                var clickLon = event.latLng.lng();
+
+                // show in input box
+                document.getElementById("textfield5").value = clickLat.toFixed(5);
+                document.getElementById("textfield6").value = clickLon.toFixed(5);
+
+{#                  var marker = new google.maps.Marker({#}
+{#                        position: new google.maps.LatLng(clickLat,clickLon),#}
+{#                        map: map#}
+{#                     });#}
+            });
+
+
+}
+</script>

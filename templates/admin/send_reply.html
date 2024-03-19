@@ -1,0 +1,14 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+    <form method="post" action="/send_reply_post/{{ id }}">{% csrf_token %}
+    <table class="table table-borderless w-50 mx-auto">
+        <tr>
+           <td><textarea name="reply" placeholder="Drop your reply" class="form-control"></textarea></td>
+        </tr>
+        <tr align="center">
+            <td><input type="submit" value="Send" class="btn btn-success"></td>
+        </tr>
+    </table>
+
+    </form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'pharmacy/index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User rating</th>
+      <th scope="col">Review</th>
+      <th scope="col">date</th>
+      <th scope="col">User</th>
+
+    </tr>
+    {% for foo in data %}
+    <tr>
+      <th scope="row">&nbsp;{{ forloop.counter }}</th>
+      <td>&nbsp;<img src="{{ foo.userrating.0 }}" height="20" width="20" alt=""/><img src="{{ foo.userrating.1 }}" height="20" width="20" alt=""/><img src="{{ foo.userrating.2 }}"height="20" width="20" alt=""/><img src="{{ foo.userrating.3 }}"height="20" width="20" alt=""/><img src="{{ foo.userrating.4 }}"height="20" width="20" alt=""/></td>
+        <td>&nbsp;{{ foo.review }}</td>
+         <td>&nbsp;{{ foo.date }}</td>
+         <td>&nbsp;{{ foo.USER.email  }}</td>
+
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'pharmacy/index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1"class="table table-bordered">
+    <tr>
+      <th scope="col"><h3>#</h3></th>
+      <th scope="col">User</th>
+      <th scope="col">Address</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Payment Gateway</th>
+      <th scope="col">&nbsp;</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+    <tr>
+        {% for foo in data %}
+            <th scope="row">&nbsp;{{ forloop.counter }}</th>
+      <td>&nbsp;{{ foo.USER.name }}</td>
+      <td>{{ foo.ADDRESS.Housename }},<br>{{ foo.ADDRESS.place }},<br>{{ foo.ADDRESS.post }},<br>{{ foo.ADDRESS.pin }}</td>
+      <td>&nbsp; {{ foo.USER.email }}</td>
+      <td>&nbsp;{{ foo.USER.phone }}</td>
+      <td>&nbsp;{{ foo.amount }}</td>
+      <td>{{ foo.purchase }}</td>
+            <td><a href="/vieworderitem/{{ foo.id }}#service" class="btn btn-dark" style="width: 100%">View medicine</a></td>
+
+
+            {% if foo.status == 'pending' %}
+
+                <td><p><a href="/vaccept/{{ foo.id }}#service" class="btn btn-dark" style="width: 100%">accept</a></p>
+                <p><a href="/vreject/{{ foo.id }}#service" class="btn btn-danger" style="width: 100%" onclick="return confirm('Are you sure?')">reject</a></p></td>
+            {% elif foo.status == 'approved' %}
+                <td><p><a href="/accept_cash/{{ foo.id }}#service" class="btn btn-dark" style="width: 100%">Accept Cash</a></p>
+            {% elif foo.status == "paid" %}
+                <td><p><a href="/set_delivered/{{ foo.id }}#service" class="btn btn-dark" style="width: 100%">Set as Delivered</a></p>
+            {% elif foo.status == "completed" %}
+            <td><p><a href="#service" class="btn btn-dark" style="width: 100%">Paid</a></p>
+            {% else %}
+                <td><a href="#service" class="btn btn-dark" style="width: 100%">Rejected Due to {{ foo.status }}</a></td>
+            {% endif %}
+
+
+
+    </tr>
+
+       {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

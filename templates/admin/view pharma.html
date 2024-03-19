@@ -1,0 +1,40 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+   <table width="200" border="1" class="table table-bordered">
+  <tr style="background-color: #f6a248;color: white">
+{#  <tr style="background-color: rgba(233, 30, 99, 0.66);color: white">#}
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone number</th>
+      <th scope="col">Location</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+      {% for foo in data %}
+
+
+
+    <tr>
+      <td>{{ forloop.counter}}</td>
+      <td>&nbsp;{{ foo.name }}</td>
+      <td>{{ foo.email }}</td>
+      <td>&nbsp;{{ foo.phone }}</td>
+      <td><a href="https://www.google.co.in/maps/?q={{ foo.latitude }},{{ foo.longitude }}" class="btn btn-dark" style="width: 100%">Locate</a></td>
+      <td><p><a href="/pharmaaccept/{{ foo.LOGIN.id }}/{{ foo.email }}" class="btn btn-success" style="width: 100%">Accept</a></p>
+      <p><a href="/pharmareject/{{ foo.id }}/{{ foo.email }}" class="btn btn-danger" style="width: 100%"onclick="return confirm('Are you sure?')">Reject</a></p></td>
+    </tr>
+        {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

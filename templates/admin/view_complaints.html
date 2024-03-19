@@ -1,0 +1,26 @@
+{% extends 'admin/index.html' %}
+{% block body %}
+    <table class="table table-bordered">
+    <tr>
+        <th>Sl</th>
+        <th>Name</th>
+        <th>Complaint</th>
+        <th>Reply</th>
+    </tr>
+        {% for i in data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.USER.name }}</td>
+        <td>{{ i.complaint }}<br>{{ i.cdate }}</td>
+        {% if i.rdate == "pending" %}
+        <td><a href="/send_reply/{{ i.id }}#service">Reply</a></td>
+        {% else %}
+        <td>{{ i.reply }}<br>{{ i.rdate }}</td>
+    {% endif %}
+    </tr>
+    {% endfor %}
+
+
+
+    </table>
+{% endblock %}
